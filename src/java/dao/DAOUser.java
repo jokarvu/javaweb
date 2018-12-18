@@ -39,6 +39,26 @@ public class DAOUser {
         return list;
     }
     
+    public ArrayList<User> getUserByCon(String con) throws SQLException
+    {
+        Connection connection = DBConnection.getConnection();
+        String sql = "SELECT * FROM users " + con;
+        PreparedStatement ps = connection.prepareCall(sql);
+        ResultSet rs = ps.executeQuery();
+        ArrayList<User> list = new ArrayList<>();
+        while(rs.next()) {
+            User user = new User();
+            user.setId(rs.getInt("id"));
+            user.setUsername(rs.getString("username"));
+            user.setEmail(rs.getString("email"));
+            user.setPassword(rs.getString("password"));
+            user.setCreated_at(rs.getString("created_at"));
+            user.setUpdated_at(rs.getString("updated_at"));
+            list.add(user);
+        }
+        return list;
+    }
+    
     public static void main(String[] args) throws SQLException 
     {
         DAOUser dao = new DAOUser();

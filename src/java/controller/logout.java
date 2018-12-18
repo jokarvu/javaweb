@@ -5,27 +5,21 @@
  */
 package controller;
 
-import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Book;
+import javax.servlet.http.HttpSession;
 
-
-import dao.DAOBook;
-import java.sql.SQLException;
 /**
  *
  * @author mito
  */
-@WebServlet(name = "LoadMore", urlPatterns = {"/loadmore"})
-public class LoadMore extends HttpServlet {
+@WebServlet(name = "logout", urlPatterns = {"/logout"})
+public class logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +32,19 @@ public class LoadMore extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet logout</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet logout at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,28 +57,13 @@ public class LoadMore extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
-        response.setContentType("application/json;charset=UTF-8");
-        String load_mode = request.getParameter("mode");
-        int page = Integer.parseInt(request.getParameter("page"));
-        dao.DAOBook books = new dao.DAOBook();
-        String sql = new String();
-        if (load_mode != null && load_mode.equals("new")) {
-            sql = "ORDER BY created_at DESC LIMIT " + ((page - 1)*4) + ",4";
-        } else if(load_mode != null && load_mode.equals("hot")) {
-            sql = "ORDER BY total_quantity - left_quantity DESC LIMIT " + ((page - 1)*4) + ",4";
-        } else {
-            int cat_id = Integer.parseInt(request.getParameter("cat"));
-            sql = "WHERE cat_id = " + cat_id + " ORDER BY created_at DESC LIMIT " + ((page - 1)*4) + ",4";
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("username") != null) {
+            session.removeAttribute("username");
         }
-        try (PrintWriter out = response.getWriter()) {
-            ArrayList<Book> new_books = books.getBookByCon(sql);
-            Gson result = new Gson();
-            out.print(result.toJson(new_books));
-        } catch (SQLException e) {
-            System.out.println("Failed");
-        } 
+        response.sendRedirect(request.getContextPath()+"/index.jsp");
     }
 
     /**

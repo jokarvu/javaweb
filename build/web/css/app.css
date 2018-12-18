@@ -111,15 +111,10 @@ h1, h2, h3, h4, h5, h6 {
     font-size: .875rem;
 }
 
-.card-equal-height {
-    display: flex;
-}
-
 .zoom {
     transition: transform .2s;
-    flex-basis: 20%!important;
 }
-  
+
 .zoom:hover {
     border: 1px solid #007bff;
     -ms-transform: scale(1.02); /* IE 9 */
@@ -140,8 +135,18 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
 }
 
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1300px;
+@media (min-width: 768px) {
+    .zoom {
+        flex-basis: 45%!important;
+        margin-left: 2.5%!important;
+        margin-right: 2.5%!important;
+    }
+}
+
+@media (min-width: 1366px) {
+    .zoom {
+        flex-basis: 22.65%!important;
+        margin-left: 1.175%!important;
+        margin-right: 1.175%!important;
     }
 }

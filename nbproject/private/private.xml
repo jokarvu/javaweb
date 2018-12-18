@@ -3,22 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/mito/NetBeansProjects/shop/src/java/dao/DAOBook.java</file>
-            <file>file:/home/mito/NetBeansProjects/shop/src/java/dao/DAOInvoice.java</file>
-            <file>file:/home/mito/NetBeansProjects/shop/src/java/controller/LoadMore.java</file>
-            <file>file:/home/mito/NetBeansProjects/shop/src/java/model/Invoice.java</file>
+            <file>file:/home/mito/NetBeansProjects/shop/src/java/controller/login.java</file>
             <file>file:/home/mito/NetBeansProjects/shop/src/java/dao/DAOUser.java</file>
-            <file>file:/home/mito/NetBeansProjects/shop/src/java/dao/DAOCategory.java</file>
-            <file>file:/home/mito/NetBeansProjects/shop/src/java/model/Category.java</file>
-            <file>file:/home/mito/NetBeansProjects/shop/src/java/model/Book.java</file>
-            <file>file:/home/mito/NetBeansProjects/shop/web/WEB-INF/web.xml</file>
+            <file>file:/home/mito/NetBeansProjects/shop/src/java/controller/logout.java</file>
             <file>file:/home/mito/NetBeansProjects/shop/web/index.jsp</file>
-            <file>file:/home/mito/NetBeansProjects/shop/src/java/DatabasePackage/DBConnection.java</file>
-            <file>file:/home/mito/NetBeansProjects/shop/web/layouts/header.jsp</file>
-            <file>file:/home/mito/NetBeansProjects/shop/web/layouts/footer.jsp</file>
-            <file>file:/home/mito/NetBeansProjects/shop/web/META-INF/context.xml</file>
-            <file>file:/home/mito/NetBeansProjects/shop/src/java/DatabasePackage/Model.java</file>
-            <file>file:/home/mito/NetBeansProjects/shop/src/java/model/User.java</file>
+            <file>file:/home/mito/NetBeansProjects/shop/web/register.jsp</file>
         </group>
     </open-files>
 </project-private>
