@@ -8,24 +8,24 @@ package controller;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Book;
-
 
 import dao.DAOBook;
-import java.sql.SQLException;
+import javax.servlet.http.HttpSession;
+import model.Book;
+
 /**
  *
  * @author mito
  */
-@WebServlet(name = "LoadMore", urlPatterns = {"/loadmore"})
-public class LoadMore extends HttpServlet {
+@WebServlet(name = "addToCart", urlPatterns = {"/addToCart"})
+public class addToCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +38,19 @@ public class LoadMore extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet addToCart</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet addToCart at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,27 +63,27 @@ public class LoadMore extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
         response.setContentType("application/json;charset=UTF-8");
-        String load_mode = request.getParameter("mode");
-        int page = Integer.parseInt(request.getParameter("page"));
-        String sql = new String();
-        if (load_mode != null && load_mode.equals("new")) {
-            sql = "ORDER BY created_at DESC LIMIT " + ((page - 1)*4) + ",4";
-        } else if(load_mode != null && load_mode.equals("hot")) {
-            sql = "ORDER BY total_quantity - left_quantity DESC LIMIT " + ((page - 1)*4) + ",4";
+        String id = request.getParameter("id");
+        String cart = "";
+        if (session.getAttribute("cart") != null) {
+            cart = session.getAttribute("cart") + "," + id;
         } else {
-            int cat_id = Integer.parseInt(request.getParameter("cat"));
-            sql = "WHERE cat_id = " + cat_id + " ORDER BY created_at DESC LIMIT " + ((page - 1)*4) + ",4";
+            cart = id;
         }
-        try (PrintWriter out = response.getWriter()) {
-            ArrayList<Book> new_books = DAOBook.getBookByCon(sql);
-            Gson result = new Gson();
-            out.print(result.toJson(new_books));
+        session.setAttribute("cart", cart);
+        try {
+            int tmp = Integer.parseInt(id);
+            Book book = DAOBook.findBook(tmp);
+            Gson json = new Gson();
+            response.getWriter().println(json.toJson(book));
+            // response.getWriter().println(session.getAttribute("cart"));
         } catch (SQLException e) {
-            System.out.println("Failed");
-        } 
+            response.getWriter().println("failed");
+        }
     }
 
     /**

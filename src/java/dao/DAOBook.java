@@ -6,6 +6,7 @@
 package dao;
 
 import DatabasePackage.DBConnection;
+import com.google.gson.Gson;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,7 +44,7 @@ public class DAOBook {
         return list;
     }
     
-    public ArrayList<Book> getBookByCon(String con) throws SQLException
+    public static ArrayList<Book> getBookByCon(String con) throws SQLException
     {
         Connection connection = DBConnection.getConnection();
         String sql = "SELECT * FROM books " + con;
@@ -68,11 +69,34 @@ public class DAOBook {
         return list;
     }
 
+    public static Book findBook(int id) throws SQLException
+    {
+        Connection connection = DBConnection.getConnection();
+        String sql = "SELECT * FROM books WHERE id = '" + id + "'";
+        PreparedStatement ps = connection.prepareCall(sql);
+        ResultSet rs = ps.executeQuery();
+        Book book = new Book();
+        if (rs.first()) {
+            rs.first();
+            book.setId(rs.getInt("id"));
+            book.setName(rs.getString("name"));
+            book.setSlug(rs.getString("slug"));
+            book.setAuthor(rs.getString("author"));
+            book.setDes(rs.getString("des"));
+            book.setCat_id(rs.getInt("cat_id"));
+            book.setPrice(rs.getInt("price"));
+            book.setTotal_quantity(rs.getInt("total_quantity"));
+            book.setLeft_quantity(rs.getInt("left_quantity"));
+            book.setCreated_at(rs.getString("created_at"));
+            book.setUpdated_at(rs.getString("updated_at"));
+        }
+        return book;
+    }
+
+
+
     public static void main(String[] args) throws SQLException 
     {
-        DAOBook dao = new DAOBook();
-        for(Book ds : dao.getListBook()) {
-            System.out.println(ds.getId() + " - " + ds.getName());
-        }
+        //
     }
 }

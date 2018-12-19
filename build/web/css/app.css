@@ -111,8 +111,21 @@ h1, h2, h3, h4, h5, h6 {
     font-size: .875rem;
 }
 
+#cart {
+    right: 10.5%;
+    top: 60px;
+    display: none;
+    z-index: 1000!important;
+}
+
+#cart-body {
+    height: 462px!important;
+    overflow-y: scroll!important;
+}
+
 .zoom {
     transition: transform .2s;
+    cursor: pointer!important;
 }
 
 .zoom:hover {
