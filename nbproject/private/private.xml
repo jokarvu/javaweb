@@ -4,11 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/mito/NetBeansProjects/shop/src/java/controller/logout.java</file>
+            <file>file:/home/mito/NetBeansProjects/shop/src/java/controller/loadCart.java</file>
+            <file>file:/home/mito/NetBeansProjects/shop/src/java/dao/DAOBook.java</file>
             <file>file:/home/mito/NetBeansProjects/shop/web/register.jsp</file>
             <file>file:/home/mito/NetBeansProjects/shop/web/index.jsp</file>
             <file>file:/home/mito/NetBeansProjects/shop/web/login.jsp</file>
+            <file>file:/home/mito/NetBeansProjects/shop/src/java/controller/LoadMore.java</file>
             <file>file:/home/mito/NetBeansProjects/shop/src/java/controller/login.java</file>
+            <file>file:/home/mito/NetBeansProjects/shop/src/java/controller/addToCart.java</file>
             <file>file:/home/mito/NetBeansProjects/shop/src/java/dao/DAOUser.java</file>
+            <file>file:/home/mito/NetBeansProjects/shop/src/java/controller/register.java</file>
         </group>
     </open-files>
 </project-private>
