@@ -59,11 +59,20 @@ public class DAOUser {
         return list;
     }
     
+    public static void createUser(User user) throws SQLException
+    {
+        Connection connection = DBConnection.getConnection();
+        String sql = "INSERT INTO users(username, email, password) VALUES('" + user.getUsername() + "','" + user.getEmail() +"','" + user.getPassword() + "')";
+        PreparedStatement ps = connection.prepareCall(sql);
+        ps.executeUpdate();
+    }
+
     public static void main(String[] args) throws SQLException 
     {
-        DAOUser dao = new DAOUser();
-        for(User ds : dao.getListUser()) {
-            System.out.println(ds.getUsername() + " - " + ds.getPassword());
-        }
+        User user = new User();
+        user.setUsername("kalenz");
+        user.setEmail("kalenz@shop.com");
+        user.setPassword("1234");
+        DAOUser.createUser(user);
     }
 }

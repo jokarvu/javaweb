@@ -32,7 +32,7 @@
               <% } else { %>
               <div class="row">
                 <div class="col-md-6">
-                    <a class="btn btn-sm btn-outline-secondary" href="/">Sign up</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="/shop/register.jsp">Sign up</a>
                 </div>
                 <div class="col-md-6">
                     <a class="btn btn-sm btn-outline-secondary" href="/shop/login.jsp">Login</a>
