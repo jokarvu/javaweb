@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
+
 import model.Book;
 
 /**
@@ -19,7 +21,7 @@ import model.Book;
  * @author mito
  */
 public class DAOBook {
-    public ArrayList<Book> getListBook() throws SQLException
+    public static ArrayList<Book> getListBook() throws SQLException
     {
         Connection connection = DBConnection.getConnection();
         String sql = "SELECT * FROM books";
@@ -77,7 +79,6 @@ public class DAOBook {
         ResultSet rs = ps.executeQuery();
         Book book = new Book();
         if (rs.first()) {
-            rs.first();
             book.setId(rs.getInt("id"));
             book.setName(rs.getString("name"));
             book.setSlug(rs.getString("slug"));

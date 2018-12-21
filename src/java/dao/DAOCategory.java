@@ -19,7 +19,7 @@ import model.Category;
  * @author mito
  */
 public class DAOCategory {
-    public ArrayList<Category> getListCategory() throws SQLException
+    public static ArrayList<Category> getListCategory() throws SQLException
     {
         Connection connection = DBConnection.getConnection();
         String sql = "SELECT * FROM categories";
@@ -38,9 +38,6 @@ public class DAOCategory {
     }
     public static void main(String[] args) throws SQLException 
     {
-        DAOCategory dao = new DAOCategory();
-        for(Category ds : dao.getListCategory()) {
-            System.out.println(ds.getId() + " - " + ds.getName());
-        }
+        //
     }
 }

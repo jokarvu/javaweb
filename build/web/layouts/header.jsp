@@ -8,6 +8,10 @@
 <%@ page import="dao.DAOCategory" %>
 <%@ page import="model.Category" %>
 <!DOCTYPE html>
+<link rel="stylesheet" href="./css/bootstrap.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+<link rel="stylesheet" href="./css/app.css">
+<link rel="stylesheet" href="./css/toastr.min.css">
 <div class="container-fluid">
     <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">

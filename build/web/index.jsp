@@ -14,9 +14,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Demin Shop</title>
-        <link rel="stylesheet" href="./css/bootstrap.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-        <link rel="stylesheet" href="./css/app.css">
     </head>
     <body>
         <jsp:include page="./layouts/header.jsp"/>
@@ -33,10 +30,12 @@
                 <div class="card zoom mb-4">
                     <img class="card-img-top" src="<%= "/shop/images/book/" + b.getSlug() + ".gif" %>" alt="Card image cap" width="280px" height="400px">
                     <div class="card-body">
-                        <h5 class="card-title"><%= b.getName() %></h5>
+                        <a href="<%= "/shop/book.jsp?bookId=" + b.getId() %>">
+                            <h5 class="card-title"><%= b.getName() %></h5>
+                        </a>
                         <p class="card-text text-muted"><%= b.getAuthor() %></p>
                         <p class="card-text"><b><%= b.getPrice() %> đ</b></p>
-                        <i class="fa fa-cart-plus" id="<%= b.getId() %>"></i>
+                        <i class="fa fa-cart-plus" book_id="<%= b.getId() %>"></i>
                     </div>
                 </div>
                 <%
@@ -58,10 +57,12 @@
                 <div class="card zoom mb-4">
                     <img class="card-img-top" src="<%= "/shop/images/book/" + b.getSlug() + ".gif" %>" alt="Card image cap" height="400px">
                     <div class="card-body">
-                        <h5 class="card-title"><%= b.getName() %></h5>
+                        <a href="<%= "/shop/book.jsp?bookId=" + b.getId() %>">
+                            <h5 class="card-title"><%= b.getName() %></h5>
+                        </a>
                         <p class="card-text text-muted"><%= b.getAuthor() %></p>
                         <p class="card-text"><b><%= b.getPrice() %> đ</b></p>
-                        <i class="fa fa-cart-plus" id="<%= b.getId() %>"></i>
+                        <i class="fa fa-cart-plus" book_id="<%= b.getId() %>"></i>
                     </div>
                 </div>
                 <%
@@ -83,10 +84,12 @@
                     <div class="card zoom mb-4">
                         <img class="card-img-top" src="<%= "/shop/images/book/" + b.getSlug() + ".gif" %>" alt="Card image cap" height="400px">
                         <div class="card-body">
-                            <h5 class="card-title"><%= b.getName() %></h5>
+                            <a href="<%= "/shop/book.jsp?bookId=" + b.getId() %>">
+                                <h5 class="card-title"><%= b.getName() %></h5>
+                            </a>
                             <p class="card-text text-muted"><%= b.getAuthor() %></p>
                             <p class="card-text"><b><%= b.getPrice() %> đ</b></p>
-                            <i class="fa fa-cart-plus" id="<%= b.getId() %>"></i>
+                            <i class="fa fa-cart-plus" book_id="<%= b.getId() %>"></i>
                         </div>
                     </div>
                 <% } %>

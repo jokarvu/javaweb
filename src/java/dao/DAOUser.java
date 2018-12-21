@@ -19,7 +19,7 @@ import model.User;
  * @author mito
  */
 public class DAOUser {
-    public ArrayList<User> getListUser() throws SQLException
+    public static ArrayList<User> getListUser() throws SQLException
     {
         Connection connection = DBConnection.getConnection();
         String sql = "SELECT * FROM users";

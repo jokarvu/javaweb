@@ -19,7 +19,7 @@ import model.Invoice;
  * @author mito
  */
 public class DAOInvoice {
-    public ArrayList<Invoice> getListInvoice() throws SQLException
+    public static ArrayList<Invoice> getListInvoice() throws SQLException
     {
         Connection connection = DBConnection.getConnection();
         String sql = "SELECT * FROM invoices";
@@ -42,9 +42,6 @@ public class DAOInvoice {
     }
     public static void main(String[] args) throws SQLException 
     {
-        DAOInvoice dao = new DAOInvoice();
-        for(Invoice ds : dao.getListInvoice()) {
-            System.out.println(ds.getId() + " - " + ds.getUser_id());
-        }
+        // 
     }
 }
