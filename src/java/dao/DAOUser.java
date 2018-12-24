@@ -31,6 +31,7 @@ public class DAOUser {
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setEmail(rs.getString("email"));
+            user.setRole(rs.getInt("role"));
             user.setPassword(rs.getString("password"));
             user.setCreated_at(rs.getString("created_at"));
             user.setUpdated_at(rs.getString("updated_at"));
@@ -39,6 +40,26 @@ public class DAOUser {
         return list;
     }
     
+    public static User find(int id) throws SQLException
+    {
+        Connection connection = DBConnection.getConnection();
+        String sql = "SELECT * FROM users WHERE id=?";
+        PreparedStatement ps = connection.prepareCall(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        User user = new User();
+        if(rs.first()) {
+            user.setId(rs.getInt("id"));
+            user.setUsername(rs.getString("username"));
+            user.setEmail(rs.getString("email"));
+            user.setRole(rs.getInt("role"));
+            user.setPassword(rs.getString("password"));
+            user.setCreated_at(rs.getString("created_at"));
+            user.setUpdated_at(rs.getString("updated_at"));
+        }
+        return user;
+    }
+
     public ArrayList<User> getUserByCon(String con) throws SQLException
     {
         Connection connection = DBConnection.getConnection();
@@ -49,6 +70,7 @@ public class DAOUser {
         while(rs.next()) {
             User user = new User();
             user.setId(rs.getInt("id"));
+            user.setRole(rs.getInt("role"));
             user.setUsername(rs.getString("username"));
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));
@@ -62,8 +84,15 @@ public class DAOUser {
     public static void createUser(User user) throws SQLException
     {
         Connection connection = DBConnection.getConnection();
-        String sql = "INSERT INTO users(username, email, password) VALUES('" + user.getUsername() + "','" + user.getEmail() +"','" + user.getPassword() + "')";
+        if(user.getRole() == 0) {
+            user.setRole(2);
+        }
+        String sql = "INSERT INTO users(username, email, password, role) VALUES(?,?,?,?)";
         PreparedStatement ps = connection.prepareCall(sql);
+        ps.setString(1, user.getUsername());
+        ps.setString(2, user.getEmail());
+        ps.setString(3, user.getPassword());
+        ps.setInt(4, user.getRole());
         ps.executeUpdate();
     }
 
@@ -73,6 +102,10 @@ public class DAOUser {
         user.setUsername("kalenz");
         user.setEmail("kalenz@shop.com");
         user.setPassword("1234");
-        DAOUser.createUser(user);
+        if (user.getRole() == 0) {
+            System.out.print(user.getRole());
+        } else {
+            System.out.print("ok");
+        }
     }
 }

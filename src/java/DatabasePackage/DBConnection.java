@@ -19,6 +19,7 @@ public class DBConnection {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/shop", "root", "b15dcpt082");
+            // conn.setCharacterEncoding("utf-8");
         } catch (Exception e) {
             e.printStackTrace();
         }

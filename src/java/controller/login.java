@@ -89,13 +89,16 @@ public class login extends HttpServlet {
         }
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        DAOUser user = new DAOUser();
+        DAOUser users = new DAOUser();
         ArrayList<User> result = new ArrayList<>();
         try {
-            result = user.getUserByCon("WHERE username='" + username + "' AND password='" + password + "'");
+            result = users.getUserByCon("WHERE username='" + username + "' AND password='" + password + "'");
             if (!result.isEmpty()) {
-                session.setAttribute("username", username);
-                response.getWriter().println(session.getAttribute("username"));
+                User user = result.get(0);
+                session.setAttribute("username", user.getUsername());
+                session.setAttribute("role", user.getRole());
+                // response.getWriter().println(session.getAttribute("username"));
+                // response.getWriter().println(session.getAttribute("role"));
                 response.sendRedirect(request.getContextPath()+"/index.jsp");
             } else {
                 response.sendRedirect(request.getContextPath()+"/login.jsp?error=1");

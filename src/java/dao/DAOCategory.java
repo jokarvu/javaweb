@@ -36,6 +36,15 @@ public class DAOCategory {
         }
         return list;
     }
+
+    public static void save(Category cat) throws SQLException
+    {
+        Connection connection = DBConnection.getConnection();
+        String sql = "INSERT INTO categories(name) VALUES(?)";
+        PreparedStatement ps = connection.prepareCall(sql);
+        ps.setNString(1, cat.getName());
+        ps.executeUpdate();
+    }
     public static void main(String[] args) throws SQLException 
     {
         //

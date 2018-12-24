@@ -14,6 +14,7 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private int role;
     private String created_at;
     private String updated_at;
 
@@ -63,6 +64,14 @@ public class User {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
     
 }

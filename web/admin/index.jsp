@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="dao.DAODashboard" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -15,7 +16,7 @@
 </head>
 
 <body>
-    <jsp:include page="./layouts/header.jsp" />
+        <%@ include file="./layouts/header.jsp" %>
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header main-color-bg">
@@ -84,6 +85,53 @@
                                 </div>
                             </div>
                             
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-primary text-white">
+                                        <i class="fa fa-book"></i>
+                                    </span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">
+                                            Sold books
+                                        </span>
+                                        <span class="info-box-number">
+                                            <% out.print(DAODashboard.counter().get("total_sold_books")); %>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-success text-white">
+                                        <i class="fa fa-money-check-alt"></i>
+                                    </span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">
+                                            Total Money
+                                        </span>
+                                        <span class="info-box-number">
+                                            <% out.print(DAODashboard.counter().get("total_money")); %>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-warning text-white">
+                                        <i class="fa fa-money-book"></i>
+                                    </span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">
+                                            Left book
+                                        </span>
+                                        <span class="info-box-number">
+                                            <% out.print(DAODashboard.counter().get("total_left_books")); %>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

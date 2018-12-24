@@ -137,3 +137,8 @@ if (path != "") {
     })
     $("#breadcrumb").append(breadcrumb_text);
 }
+
+/*
+    Admin
+*/
+$("#book-index").DataTable();

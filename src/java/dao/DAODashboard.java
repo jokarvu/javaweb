@@ -59,6 +59,34 @@ public class DAODashboard {
             category_count = rs.getString("COUNT(id)");
         }
         result.put("category_count", category_count);
+        // Total sold books
+        sql = "SELECT SUM(quantity) as total_sold_books FROM book_invoice";
+        ps = connection.prepareCall(sql);
+        rs = ps.executeQuery();
+        String total_sold_books = "0";
+        if(rs.first()) {
+            total_sold_books = rs.getString("total_sold_books");
+        }
+        result.put("total_sold_books", total_sold_books);
+        // Total money
+        sql = "SELECT SUM(quantity*invoice_price) as total_money FROM book_invoice";
+        ps = connection.prepareCall(sql);
+        rs = ps.executeQuery();
+        String total_money = "0";
+        if(rs.first()) {
+            total_money = rs.getString("total_money");
+        }
+        result.put("total_money", total_money);
+        // Total left books
+        sql = "SELECT SUM(quantity) as total_left_books FROM books";
+        ps = connection.prepareCall(sql);
+        rs = ps.executeQuery();
+        String total_left_books = "0";
+        if(rs.first()) {
+            total_left_books = rs.getString("total_left_books");
+        }
+        result.put("total_left_books", total_left_books);
+        // Return result
         return result;
     }
 
